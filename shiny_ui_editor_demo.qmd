@@ -1,0 +1,89 @@
+---
+title: "Shiny UI Editor Demo"
+format: html
+editor: visual
+---
+
+## Shiny UI Editor 
+
+Build Shiny application UIs by dragging-and-dropping. Generates clean and proper code as you build.
+
+-   <https://rstudio.github.io/shinyuieditor/>
+-   <https://www.youtube.com/watch?v=gYPnLiudtGU>
+
+## Library
+
+```{r}
+#https://rstudio.github.io/shinyuieditor/
+#remotes::install_github("rstudio/shinyuieditor")
+```
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(gt)
+library(remotes)
+library(plotly)
+library(shinyuieditor)
+```
+
+## Example
+
+<https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/ChickWeight>
+
+```{r}
+#| echo: false
+df = ChickWeight
+head(df)
+```
+
+### Visualizations
+
+```{r}
+num_chicks = 6
+img_000 = df|>
+  filter(as.numeric(Chick)< num_chicks)|>
+  ggplot() +
+ aes(x = Time, y = weight, colour = Chick) +
+ geom_line() +
+ scale_color_hue(direction = 1) +
+ labs(title = "Chicks Weight over time", color = "number of chicks") +
+ theme_minimal()
+  
+
+ggplotly(img_000)
+
+```
+
+```{r}
+
+img_001 = ggplot(df) +
+ aes(x = Diet, y = weight) +
+ geom_boxplot(fill = "#678DD2") +
+ labs(title = "Weight and Diet Distribution", color = "number of chicks") +
+ theme_minimal()
+
+ggplotly(img_001)
+```
+
+```{r}
+
+
+img_002 = ggplot(df) +
+ aes(x = Time, y = weight, fill = Diet) +
+ geom_area() +
+ scale_fill_brewer(palette = "GnBu", 
+ direction = 1) +
+  labs(title = "Chicks Diet over time", color = "number of chicks") +
+ theme_minimal()
+#
+ggplotly(img_002)
+```
+
+## Creating the Shiny App
+
+```{r}
+launch_editor(
+  app_loc = "chicks_plots/"
+)
+```
