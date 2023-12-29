@@ -105,7 +105,7 @@ launch_editor(
 
 ```{r}
 #Render the Shiny App
-shinylive::export(appdir = "chicks_plots/", destdir = "docs")
+shinylive::export(appdir = "chicks_plots", destdir = "docs")
 #shinylive::export("chicks_plots", "docs")
 ```
 
@@ -116,7 +116,7 @@ shinylive::export(appdir = "chicks_plots/", destdir = "docs")
 
 ```{r}
 # library(plumber)
-# 
+
 # pr() %>%
 #   pr_static("/", "docs/") %>%
 #   pr_run()
