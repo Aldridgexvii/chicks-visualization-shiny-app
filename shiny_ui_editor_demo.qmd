@@ -4,7 +4,7 @@ format: html
 editor: visual
 ---
 
-## Shiny UI Editor 
+## Shiny UI Editor
 
 Build Shiny application UIs by dragging-and-dropping. Generates clean and proper code as you build.
 
@@ -16,6 +16,17 @@ Build Shiny application UIs by dragging-and-dropping. Generates clean and proper
 ```{r}
 #https://rstudio.github.io/shinyuieditor/
 #remotes::install_github("rstudio/shinyuieditor")
+```
+
+```{r}
+# install.packages("pak")
+#pak::pak("posit-dev/r-shinylive")
+#pak::pak("rstudio/httpuv")
+```
+
+```{r}
+library(shinylive)
+library(httpuv)
 ```
 
 ```{r}
@@ -86,4 +97,27 @@ ggplotly(img_002)
 launch_editor(
   app_loc = "chicks_plots/"
 )
+```
+
+## Deploying the shiny App to Github
+
+<https://medium.com/>@rami.krispin/deploy-shiny-app-on-github-pages-b4cbd433bdc
+
+```{r}
+#Render the Shiny App
+shinylive::export(appdir = "chicks_plots/", destdir = "docs")
+#shinylive::export("chicks_plots", "docs")
+```
+
+```{r}
+#Run the following in an R session to serve the app:
+  httpuv::runStaticServer("docs")
+```
+
+```{r}
+# library(plumber)
+# 
+# pr() %>%
+#   pr_static("/", "docs/") %>%
+#   pr_run()
 ```
