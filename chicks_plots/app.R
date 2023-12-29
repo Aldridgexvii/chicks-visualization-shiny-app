@@ -10,8 +10,8 @@ ui <- grid_page(
   layout = c(
     "header  header   header  ",
     "sidebar bluePlot bluePlot",
-    "sidebar area5    area5   ",
-    "sidebar area4    plotly  "
+    "sidebar bluePlot bluePlot",
+    "area5   area4    plotly  "
   ),
   row_sizes = c(
     "65px",
@@ -64,10 +64,11 @@ ui <- grid_page(
   ),
   grid_card(
     area = "area5",
+    card_header("Note"),
     card_body(
       "Further deep dives to understand the relationship between chick weight and diet. 
-      Note: The ChickWeight data frame has 578 rows and 4 columns from an experiment on the effect of diet on early growth of chicks.
-      "
+            Note: The ChickWeight data frame has 578 rows and 4 columns from an experiment on the effect of diet on early growth of chicks.
+            "
     )
   )
 )
